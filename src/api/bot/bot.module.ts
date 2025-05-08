@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { TelegrafModule } from 'nestjs-telegraf';
 import { options } from 'src/config';
 import { BotService } from './bot.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([]),
+    MongooseModule.forFeature([]),
     TelegrafModule.forRootAsync(options()),
   ],
   providers: [BotService],

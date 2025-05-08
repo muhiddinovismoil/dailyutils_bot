@@ -1,17 +1,8 @@
+import { MongooseModule } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
-import { config } from 'src/config';
-import { BotModule } from './bot/bot.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { config } from '@/config';
+import { BotModule } from '@/api';
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: config.DB_URI,
-      entities: ['dist/core/entity/*.entity{.ts,.js}'],
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
-    BotModule,
-  ],
+  imports: [MongooseModule.forRoot(config.DB_URI), BotModule],
 })
 export class AppModule {}
